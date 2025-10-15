@@ -13,17 +13,12 @@ export default function Banner() {
   ];
 
   return (
-    <div className="mt-6 mx-8 border-b-2 border-dotted border-gray-300 pb-8 flex flex-col md:flex-row gap-4">
+    <div className="pt-28 px-8 border-b-2 border-dotted border-gray-300 pb-8 flex flex-col md:flex-row gap-4 bg-white relative z-0">
       {/* Left Banner */}
       <div className="relative md:w-1/2 h-[500px] rounded-lg overflow-hidden group">
-        <img
-          src={bannerLeft}
-          alt="Banner"
-          className="h-full w-full object-cover"
-        />
+        <img src={bannerLeft} alt="Banner" className="h-full w-full object-cover" />
 
-        {/* Overlay Text */}
-        <div className="absolute inset-0 flex flex-col justify-center items-start bg-black/30 px-6 opacity-100 transition-opacity duration-300">
+        <div className="absolute inset-0 flex flex-col justify-center items-start bg-black/30 px-6">
           <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
             We Are Hexashop
           </h1>
@@ -36,20 +31,14 @@ export default function Banner() {
         </div>
       </div>
 
-      {/* Right Banners - 2x2 grid with hover overlay */}
+      {/* Right Banners */}
       <div className="md:w-1/2 grid grid-cols-2 grid-rows-2 gap-2 h-[500px]">
         {rightBanners.map((banner, idx) => (
           <div key={idx} className="relative rounded-lg overflow-hidden group">
             <img src={banner.img} alt={`Banner ${idx + 1}`} className="w-full h-full object-cover" />
-            
-            {/* Hover Overlay */}
             <div className="absolute inset-0 flex flex-col justify-center items-start bg-black/30 px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <h2 className="text-2xl font-bold text-white drop-shadow-md">
-                {banner.title}
-              </h2>
-              <p className="text-gray-200 mt-1 text-sm">
-                {banner.subtitle}
-              </p>
+              <h2 className="text-2xl font-bold text-white drop-shadow-md">{banner.title}</h2>
+              <p className="text-gray-200 mt-1 text-sm">{banner.subtitle}</p>
               <button className="mt-3 px-4 py-2 border border-white text-white font-semibold rounded hover:bg-white hover:text-black transition-colors duration-300">
                 Discover More
               </button>
@@ -58,5 +47,5 @@ export default function Banner() {
         ))}
       </div>
     </div>
-  )
+  );
 }
