@@ -3,7 +3,7 @@ import explore02 from "../assets/images/explore-image-02.jpg";
 
 export default function Explore() {
   return (
-    <section className="mt-16 px-8 md:px-16">
+    <section className="mt-16 px-8 md:px-16 pt-9 pb-10 border-b-2 border-dotted border-gray-300">
       <h1 className="text-3xl font-bold mb-8">Explore And Discover Our Products</h1>
       <div className="flex flex-col md:flex-row gap-8 items-center">
         {/* Left Column - Description */}
