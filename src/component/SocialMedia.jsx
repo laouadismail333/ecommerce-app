@@ -12,7 +12,7 @@ const instagramImages = [
 
 export default function SocialMedia() {
   return (
-    <section className="mt-20 px-4 sm:px-8 lg:px-16 border-b border-gray-200">
+    <section className="mt-20 py-10 px-4 sm:px-8 lg:px-16 border-b border-gray-200">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-12 items-start lg:items-center">
           {/* Left Column - Premium Content */}
