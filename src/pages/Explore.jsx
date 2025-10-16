@@ -1,37 +1,17 @@
 import { useState } from "react";
-import men01 from "../assets/images/men-01.jpg";
-import men02 from "../assets/images/men-02.jpg";
-import men03 from "../assets/images/men-03.jpg";
-import kid01 from "../assets/images/kid-01.jpg";
-import kid02 from "../assets/images/kid-02.jpg";
-import kid03 from "../assets/images/kid-03.jpg";
-import women01 from "../assets/images/women-01.jpg";
-import women02 from "../assets/images/women-02.jpg";
-import women03 from "../assets/images/women-03.jpg";
+import productsData from "../data/product";
 
 export default function Explore() {
-  const allProducts = [
-    { id: 1, img: men01, title: "Classic Spring", price: "$119.99", category: "Men", label: "New" },
-    { id: 2, img: men02, title: "Blue Jacket", price: "$139.99", category: "Men", label: "Hot" },
-    { id: 3, img: men03, title: "Men's Classic", price: "$199.99", category: "Men" },
-    { id: 4, img: women01, title: "Denim Jacket", price: "$109.99", category: "Women" },
-    { id: 5, img: women02, title: "Floral Midi Dress", price: "$89.99", category: "Women", label: "New" },
-    { id: 6, img: women03, title: "Silk Blouse", price: "$129.99", category: "Women" },
-    { id: 7, img: kid01, title: "Playful T-Shirt", price: "$29.99", category: "Kids", label: "Hot" },
-    { id: 8, img: kid02, title: "Denim Shorts", price: "$34.99", category: "Kids" },
-    { id: 9, img: kid03, title: "Rainbow Dress", price: "$39.99", category: "Kids" },
-  ];
-
   const categories = ["All", "Men", "Women", "Kids"];
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   const products =
     selectedCategory === "All"
-      ? allProducts
-      : allProducts.filter((p) => p.category === selectedCategory);
+      ? productsData
+      : productsData.filter((p) => p.category === selectedCategory);
 
   return (
-    <section className="pt-20 pb-20 bg-gray-50">
+    <section className="pt-20 pb-20 bg-gray-50 mt-20">
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-16 text-center mb-16">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
@@ -48,10 +28,10 @@ export default function Explore() {
           <button
             key={cat}
             onClick={() => setSelectedCategory(cat)}
-            className={`px-6 py-2 rounded-full font-semibold transition ${
+            className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
               selectedCategory === cat
-                ? "bg-black text-white shadow-lg"
-                : "bg-white text-gray-800 shadow hover:shadow-md"
+                ? "bg-black text-white shadow-lg scale-105"
+                : "bg-white text-gray-800 shadow hover:shadow-md hover:scale-105"
             }`}
           >
             {cat}
@@ -81,7 +61,7 @@ export default function Explore() {
                 <img
                   src={product.img}
                   alt={product.title}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-100 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-4 text-center">

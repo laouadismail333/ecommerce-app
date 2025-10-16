@@ -1,39 +1,13 @@
 import { useState } from 'react'
-import kid01 from '../../assets/images/kid-01.jpg'
-import kid02 from '../../assets/images/kid-02.jpg'
-import kid03 from '../../assets/images/kid-03.jpg'
+import productsData from '../../data/product'
 import next from '../../assets/images/next.png'
 import prev from '../../assets/images/prev.png'
 
 export default function Kids() {
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  const kidsWear = [
-    { 
-      id: 'playful-tshirt', 
-      img: kid01, 
-      title: "Playful T-Shirt", 
-      price: "$29.99", 
-      subtitle: "Fun prints for everyday play",
-      category: "Tops"
-    },
-    { 
-      id: 'denim-shorts', 
-      img: kid02, 
-      title: "Denim Shorts", 
-      price: "$34.99", 
-      subtitle: "Comfortable and stylish for summer",
-      category: "Bottoms"
-    },
-    { 
-      id: 'rainbow-dress', 
-      img: kid03, 
-      title: "Rainbow Dress", 
-      price: "$39.99", 
-      subtitle: "Colorful and bright for happy days",
-      category: "Dresses"
-    },
-  ]
+  // Filter ONLY kids' data from productsData
+  const kidsWear = productsData.filter(item => item.category === "Kids")
 
   const itemsPerView = 3
   const totalSlides = Math.ceil(kidsWear.length / itemsPerView)
@@ -63,7 +37,7 @@ export default function Kids() {
 
   return (
     <section 
-      className='text-center pt-9 pb-10 border-b-2 border-dotted border-gray-300'
+      className='text-center mt-20 pt-9 pb-10 border-b-2 border-dotted border-gray-300'
       aria-labelledby="kids-latest-heading"
     >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
@@ -75,7 +49,7 @@ export default function Kids() {
             Kids' Latest
           </h2>
           <p className='text-xl text-gray-600 max-w-2xl mx-auto'>
-            Explore our newest kids' fashion, perfect for playtime and adventures.
+            Discover our latest collection of kids' fashion, perfect for every adventure.
           </p>
         </header>
         
@@ -114,12 +88,19 @@ export default function Kids() {
                 <div className='relative h-96 overflow-hidden'>
                   <img 
                     src={item.img} 
-                    alt={`${item.title} - ${item.subtitle}`}
+                    alt={item.title}
                     className='w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700'
                     loading="lazy"
                     width={400}
                     height={384}
                   />
+                  
+                  {/* Label Badge */}
+                  {item.label && (
+                    <span className='absolute top-4 left-4 bg-white/90 text-black text-xs px-3 py-1 rounded-full font-semibold uppercase tracking-wide'>
+                      {item.label}
+                    </span>
+                  )}
                   
                   {/* Quick Action Buttons */}
                   <div className='absolute top-4 right-4 space-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300'>
@@ -152,9 +133,6 @@ export default function Kids() {
                     >
                       {item.title}
                     </h3>
-                    <p className='text-gray-200 text-sm mb-3 leading-relaxed'>
-                      {item.subtitle}
-                    </p>
                     <div className='flex items-center justify-between'>
                       <span className='text-2xl font-bold text-white'>
                         {item.price}
@@ -171,13 +149,10 @@ export default function Kids() {
                 </div>
 
                 {/* Static Card Info */}
-                <div >
+                <div>
                   <h3 className='text-lg font-semibold text-gray-900 mb-1 sr-only'>
                     {item.title}
                   </h3>
-                  <p className='text-sm text-gray-600 mb-2 sr-only'>
-                    {item.subtitle}
-                  </p>
                   <p className='text-xl font-bold text-gray-900 sr-only'>
                     {item.price}
                   </p>

@@ -1,40 +1,13 @@
 import { useState } from 'react'
-import men01 from '../../assets/images/men-01.jpg'
-import men02 from '../../assets/images/men-02.jpg'
-import men03 from '../../assets/images/men-03.jpg'
+import productsData from '../../data/product'
 import next from '../../assets/images/next.png'
 import prev from '../../assets/images/prev.png'
 
 export default function Men() {
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  const mensWear = [
-    { 
-      id: 'classic-spring', 
-      img: men01, 
-      title: "Classic Spring", 
-      price: "$119.99", 
-      subtitle: "Fresh style for every season",
-      category: "Casual"
-    },
-    { 
-      id: 'blue-jacket', 
-      img: men02, 
-      title: "Blue Jacket", 
-      price: "$139.99", 
-      subtitle: "Premium comfort & style",
-      category: "Outerwear"
-    },
-    { 
-      id: 'mens-classic', 
-      img: men03, 
-      title: "Men's Classic", 
-      price: "$199.99", 
-      subtitle: "Timeless elegance for men",
-      category: "Formal"
-    },
-    
-  ]
+  // Filter ONLY men's data from productsData
+  const mensWear = productsData.filter(item => item.category === "Men")
 
   const itemsPerView = 3
   const totalSlides = Math.ceil(mensWear.length / itemsPerView)
@@ -64,7 +37,7 @@ export default function Men() {
 
   return (
     <section 
-      className='text-center pt-9 pb-10 border-b-2 border-dotted border-gray-300'
+      className='text-center mt-20 pt-9 pb-10 border-b-2 border-dotted border-gray-300'
       aria-labelledby="mens-latest-heading"
     >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
@@ -115,12 +88,19 @@ export default function Men() {
                 <div className='relative h-96 overflow-hidden'>
                   <img 
                     src={item.img} 
-                    alt={`${item.title} - ${item.subtitle}`}
+                    alt={item.title}
                     className='w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700'
                     loading="lazy"
                     width={400}
                     height={384}
                   />
+                  
+                  {/* Label Badge */}
+                  {item.label && (
+                    <span className='absolute top-4 left-4 bg-white/90 text-black text-xs px-3 py-1 rounded-full font-semibold uppercase tracking-wide'>
+                      {item.label}
+                    </span>
+                  )}
                   
                   {/* Quick Action Buttons */}
                   <div className='absolute top-4 right-4 space-y-2 opacity-0 group-hover:opacity-100 transition-all duration-300'>
@@ -153,9 +133,6 @@ export default function Men() {
                     >
                       {item.title}
                     </h3>
-                    <p className='text-gray-200 text-sm mb-3 leading-relaxed'>
-                      {item.subtitle}
-                    </p>
                     <div className='flex items-center justify-between'>
                       <span className='text-2xl font-bold text-white'>
                         {item.price}
@@ -172,13 +149,10 @@ export default function Men() {
                 </div>
 
                 {/* Static Card Info */}
-                <div >
+                <div>
                   <h3 className='text-lg font-semibold text-gray-900 mb-1 sr-only'>
                     {item.title}
                   </h3>
-                  <p className='text-sm text-gray-600 mb-2 sr-only'>
-                    {item.subtitle}
-                  </p>
                   <p className='text-xl font-bold text-gray-900 sr-only'>
                     {item.price}
                   </p>
